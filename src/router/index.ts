@@ -1,15 +1,27 @@
 import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
-import Home from '@/views/HomeView.vue'
+import FactsView from '@/views/FactsView.vue'
+import FactDetailView from '@/views/FactDetailView.vue'
 
 Vue.use(VueRouter)
 
 const routes: Array<RouteConfig> = [
   {
-    path: '/',
+    path: '/cat-facts',
     name: 'cat-facts',
-    component: Home
+    component: FactsView
   },
+  {
+    path: '/',
+    redirect: to => {
+      return {path: '/cat-facts'}
+    }
+  },
+  {
+    path: '/fact/:id',
+    name: 'fact-detail',
+    component: FactDetailView
+  }
 ]
 
 const router = new VueRouter({
