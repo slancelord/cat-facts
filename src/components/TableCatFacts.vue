@@ -2,12 +2,12 @@
     <div>
         <v-card>
             <v-card-title>
-                Cat facts
+                {{ $t('table.title') }}
                 <v-spacer></v-spacer>
                 <v-select 
                     v-model="amount"
                     @change="loadCatFacts()"
-                    label="Number of records to download"
+                    :label="$t('table.select.label')"
                     :items="[5, 10, 15, 20, 30, 50, 100]"
                     hide-details
                 ></v-select>
@@ -19,6 +19,10 @@
             :items="catFacts"
             item-key="_id"
             class="elevation-1"
+            :footer-props="{
+                'itemsPerPageText': $t('table.footer.itemsPerPageText'),
+                'pageText': $t('table.footer.pageText')
+            }"
             >
                 <template v-slot:items="props">
                     <td>{{ props.item._id }}</td>
@@ -46,6 +50,7 @@
         getCatFactsFromAPI: (amount: number) => {error:{massage: string, status: number}};
         getCatFacts: () => catFact[];
         loadCatFacts: () => void;
+        headers: { text: string, value: string, width?: string }[];
         loadTable: boolean;
         amount: number;
     }
@@ -54,10 +59,6 @@
         data() {
             return {
                 loadTable: true,
-                headers: [
-                    { text: 'ID', value: '_id', width:'20%'},
-                    { text: 'Fact', value: 'text'},
-                ],
                 amount: 20,
             };
         },
@@ -71,6 +72,13 @@
             catFacts(this: CatFactsComponent) {
                 return this.getCatFacts;
             },
+
+            headers(): { text: string, value: string, width?: string }[] {
+                return [
+                    { text: this.$t('table.headers.ID').toString(), value: '_id', width:'20%'},
+                    { text: this.$t('table.headers.fact').toString(), value: 'text'},
+                ]
+            }
         },
 
 

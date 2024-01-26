@@ -1,35 +1,43 @@
 <template>
-    <v-card> 
-        <v-card-title class="text-h3 py-2">Cat fact</v-card-title>
-        <v-card-subtitle class="pl-5">Fact id: {{ catFact._id}}</v-card-subtitle>
-        <v-card-text class="text-h5 py-3 text--primary">
-            {{ catFact.text }}
-        </v-card-text>
-      
-        <v-card-actions>
-            <v-list-item>
-                <template>
+    <div>
+        <v-card> 
+            <v-card-title class="text-h3 py-2">
+                {{ $t('detailFact.card.title') }}
+            </v-card-title>
+            <v-card-subtitle class="pl-5 pa-1">
+                {{ $t('detailFact.card.subtitle') }}: {{ catFact._id}}
+            </v-card-subtitle>
+            <v-card-text class="text-h5 py-3 text--primary">
+                {{ catFact.text }}
+            </v-card-text>
+            <v-card-actions>
+                <v-list-item>
                     <v-avatar>
                         <v-img :src=catFact.user.photo></v-img>
                     </v-avatar>
-                </template>
-                <v-list-item-title class="pl-1">
-                        {{ catFact.user.name?.first }} {{ catFact.user.name?.last }}
-                    <v-list-item-subtitle>
-                        user id: {{ catFact.user._id}}
-                    </v-list-item-subtitle>
-                </v-list-item-title>
-                <template>
-                    <v-list-item-title class="text-end">
-                        Created: {{ catFact.createdAt }}
+                    <v-list-item-content class="pl-1">
                         <v-list-item-title>
-                        Updated: {{ catFact.updatedAt }}
+                            {{ catFact.user.name?.first }} {{ catFact.user.name?.last }}
                         </v-list-item-title>
-                    </v-list-item-title>
-                </template>
-            </v-list-item>
-        </v-card-actions>
-    </v-card>
+                        <v-list-item-subtitle>
+                                {{ $t('detailFact.listUser.subtitle') }}: {{ catFact.user._id}}
+                        </v-list-item-subtitle>
+                    </v-list-item-content>
+                    <v-list-item-content>
+                        <v-list-item-title class="text-end">
+                            {{ $t('detailFact.listTime.createdAt') }}: {{ catFact.createdAt }}
+                        </v-list-item-title>
+                        <v-list-item-title class="text-end">
+                            {{ $t('detailFact.listTime.updateAt') }}: {{ catFact.updatedAt }}
+                        </v-list-item-title>
+                    </v-list-item-content>
+                </v-list-item>
+            </v-card-actions>
+        </v-card>
+        <v-btn class="mt-5 ml-2" to="/">
+            {{ $t('detailFact.button.text') }}
+        </v-btn>
+    </div>
 </template>
   
 

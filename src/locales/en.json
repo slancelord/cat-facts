@@ -1,3 +1,32 @@
 {
-  "message": "hello i18n !!"
+    "table": {
+        "title": "Cat facts",
+        "select": {
+            "label": "Number of records to download"
+        },
+        "headers": {
+            "ID": "ID",
+            "fact": "Fact"
+        },
+        "footer": {
+            "itemsPerPageText": "Rows per page",
+            "pageText": "{0}-{1} of {2}"
+        }
+    },
+    "detailFact": {
+        "card": {
+            "title": "Cat fact",
+            "subtitle": "Fact id"
+        },
+        "listUser": {
+            "subtitle": "User id" 
+        },
+        "listTime": {
+            "createdAt": "Created",
+            "updateAt": "Updated"
+        },
+        "button": {
+            "text": "Back"
+        }
+    }
 }

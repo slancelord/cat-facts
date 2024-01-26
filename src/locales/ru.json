@@ -1,0 +1,32 @@
+{
+    "table": {
+        "title": "Факты о кошках",
+        "select": {
+            "label": "Количество загружаемых записей"
+        },
+        "headers": {
+            "ID": "ID",
+            "fact": "Факт"
+        },
+        "footer": {
+            "itemsPerPageText": "Элементов на странице",
+            "pageText": "{0}-{1} из {2}"
+        }
+    },
+    "detailFact": {
+        "card": {
+            "title": "Факт о кошке",
+            "subtitle": "Id факта"
+        },
+        "listUser": {
+            "subtitle": "Id пользователя" 
+        },
+        "listTime": {
+            "createdAt": "Создано",
+            "updateAt": "Обновлено"
+        },
+        "button": {
+            "text": "Назад"
+        }
+    }
+}

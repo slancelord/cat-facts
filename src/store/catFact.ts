@@ -13,21 +13,23 @@ export default {
     state: {
         catFacts: [] as catFact[],
     },
+
     getters: {
-        getCatFacts(state:CatModuleState) {
+        getCatFacts(state: CatModuleState) {
             return state.catFacts;
         },
 
-        getCatFactByID: (state:CatModuleState) => (id:string) => {
+        getCatFactByID: (state: CatModuleState) => (id: string) => {
             return state.catFacts.find((fact: catFact) => fact._id == id)
         }
     },
+
     mutations: {    
-        setCatFacts(state:CatModuleState, payload:catFact[]) {
+        setCatFacts(state: CatModuleState, payload: catFact[]) {
             state.catFacts = payload;
         },
 
-        updateUserFact(state:CatModuleState, payload:{id:string, user:user}) {
+        updateUserFact(state: CatModuleState, payload: {id: string, user: user}) {
             const fact = state.catFacts.find((fact: catFact) => fact._id == payload.id);
             if(fact != null){
                 fact.user = payload.user; 
@@ -36,8 +38,9 @@ export default {
             } 
         }
     },
+    
     actions: {
-        async getCatFactsFromAPI({commit} : {commit:Commit}, amount:number) {
+        async getCatFactsFromAPI({commit} : {commit: Commit}, amount: number) {
             try {
                 const response = await catFactsClient.get("/facts/random?amount=" + amount);
                 const data = Array.isArray(response.data) ? response.data : [response.data];
@@ -49,7 +52,6 @@ export default {
                             _id: data[i].user
                         },
                         text: data[i].text,
-                        type: data[i].type,
                         createdAt: data[i].createdAt,
                         updatedAt: data[i].updatedAt,
                     }
@@ -58,18 +60,18 @@ export default {
                 return {error: null}
             } catch (error) {
                 const err = error as AxiosError
-                return {error: {massage:err.response?.data as string, status:err.response?.status}}
+                return {error: {massage: err.response?.data as string, status: err.response?.status}}
             }
         },
 
-        async detailCatFactFromAPI({commit} : {commit:Commit}, id:string) {
+        async detailCatFactFromAPI({commit} : {commit: Commit}, id: string) {
             try {
                 const { data } = await catFactsClient.get("/facts/" + id);
                 commit('updateUserFact', {id, user: data.user});
                 return {error: null}
             } catch (error) {
                 const err = error as AxiosError
-                return {error: {massage:err.response?.data as string, status:err.response?.status}}
+                return {error: {massage: err.response?.data as string, status: err.response?.status}}
             }
         }
     },
